@@ -3,8 +3,8 @@ import { GraduationCap, Target, Lightbulb, Rocket } from "lucide-react";
 const highlights = [
   {
     icon: GraduationCap,
-    title: "Biomedical Background",
-    description: "B.E. in Biomedical Engineering with strong analytical skills",
+    title: "Strong Foundation",
+    description: "Engineering graduate with strong analytical skills",
   },
   {
     icon: Target,
@@ -33,10 +33,10 @@ export default function About() {
           </h2>
           <div className="w-20 h-1 bg-gradient-accent rounded-full mx-auto mb-8" />
           <p className="text-muted-foreground leading-relaxed text-lg">
-            I'm a passionate developer with a background in Biomedical Engineering, 
-            now focused on mobile app development using Flutter. My journey has taken 
-            me through diverse experiences in data annotation and AI training, giving 
-            me a unique perspective on building intelligent, user-centric applications.
+            I'm a passionate developer focused on mobile app development using Flutter. 
+            My journey has taken me through diverse experiences in data annotation and 
+            AI training, giving me a unique perspective on building intelligent, 
+            user-centric applications.
           </p>
         </div>
 

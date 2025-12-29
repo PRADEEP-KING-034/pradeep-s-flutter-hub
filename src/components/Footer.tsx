@@ -2,9 +2,9 @@ import { Github, Linkedin, Mail, Download, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/pradeep-s", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/in/pradeep-s", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:pradeep.sabarinathan@email.com", label: "Email" },
+  { icon: Github, href: "https://github.com/PRADEEP-KING-034", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/pradeep-learnit", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:pradeep2003sabarinathan@gmail.com", label: "Email" },
 ];
 
 export default function Footer() {
@@ -45,7 +45,11 @@ export default function Footer() {
 
           {/* Resume Download */}
           <Button variant="outline" size="sm" asChild>
-            <a href="#" download>
+            <a 
+              href="https://drive.google.com/file/d/1RsJxS9xaPNIDAX-B1vRd0TTOiKbf-V1o/view?usp=drive_link" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               <Download size={16} />
               Download Resume
             </a>

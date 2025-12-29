@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Mail, Phone, Linkedin, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, Linkedin, Github, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -14,38 +15,71 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({
+        title: "All fields are required",
+        description: "Please fill in all fields before submitting.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim(),
+        },
+      });
 
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
+      if (error) throw error;
 
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact me directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "pradeep.sabarinathan@email.com",
-      href: "mailto:pradeep.sabarinathan@email.com",
+      value: "pradeep2003sabarinathan@gmail.com",
+      href: "mailto:pradeep2003sabarinathan@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+91 98765 43210",
-      href: "tel:+919876543210",
+      value: "+91 8778845698",
+      href: "tel:+918778845698",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      value: "linkedin.com/in/pradeep-s",
-      href: "https://linkedin.com/in/pradeep-s",
+      value: "linkedin.com/in/pradeep-learnit",
+      href: "https://www.linkedin.com/in/pradeep-learnit",
+    },
+    {
+      icon: Github,
+      label: "GitHub",
+      value: "github.com/PRADEEP-KING-034",
+      href: "https://github.com/PRADEEP-KING-034",
     },
   ];
 

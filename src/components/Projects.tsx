@@ -1,7 +1,46 @@
 import { ExternalLink, Github, Smartphone, Globe, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  features: string[];
+  icon: typeof Smartphone;
+  color: string;
+  isCurrent?: boolean;
+}
+
+const projects: Project[] = [
+  {
+    title: "Expense Tracker",
+    description:
+      "Feature-rich expense tracking app with analytics and budget management",
+    tech: ["Flutter", "Dart", "Firebase", "Charts"],
+    features: [
+      "Track income & expenses",
+      "Visual analytics & charts",
+      "Budget management",
+      "Category-wise tracking",
+    ],
+    icon: Smartphone,
+    color: "from-amber-500 to-orange-500",
+    isCurrent: true,
+  },
+  {
+    title: "Personal Portfolio",
+    description:
+      "Modern portfolio app showcasing projects and skills with smooth animations",
+    tech: ["Flutter", "Dart", "Animations"],
+    features: [
+      "Smooth UI animations",
+      "Project showcase",
+      "Contact integration",
+      "Responsive design",
+    ],
+    icon: Smartphone,
+    color: "from-violet-500 to-purple-500",
+  },
   {
     title: "Messaging App",
     description:
@@ -91,7 +130,11 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={project.title}
-              className="group p-6 bg-card rounded-xl border border-border hover:border-accent/50 hover:shadow-xl transition-all duration-300"
+              className={`group p-6 bg-card rounded-xl border transition-all duration-300 ${
+                project.isCurrent
+                  ? "border-accent ring-2 ring-accent/20 shadow-lg"
+                  : "border-border hover:border-accent/50 hover:shadow-xl"
+              }`}
             >
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
@@ -100,13 +143,20 @@ export default function Projects() {
                 >
                   <project.icon className="w-6 h-6 text-white" />
                 </div>
-                <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button className="p-2 rounded-lg bg-secondary hover:bg-accent/10 transition-colors">
-                    <Github size={16} className="text-muted-foreground" />
-                  </button>
-                  <button className="p-2 rounded-lg bg-secondary hover:bg-accent/10 transition-colors">
-                    <ExternalLink size={16} className="text-muted-foreground" />
-                  </button>
+                <div className="flex items-center gap-2">
+                  {project.isCurrent && (
+                    <span className="px-2 py-1 text-xs font-semibold bg-accent text-accent-foreground rounded-full animate-pulse">
+                      In Progress
+                    </span>
+                  )}
+                  <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button className="p-2 rounded-lg bg-secondary hover:bg-accent/10 transition-colors">
+                      <Github size={16} className="text-muted-foreground" />
+                    </button>
+                    <button className="p-2 rounded-lg bg-secondary hover:bg-accent/10 transition-colors">
+                      <ExternalLink size={16} className="text-muted-foreground" />
+                    </button>
+                  </div>
                 </div>
               </div>
 

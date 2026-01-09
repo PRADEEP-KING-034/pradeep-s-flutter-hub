@@ -1,4 +1,5 @@
 import { Smartphone, Server, Brain } from "lucide-react";
+import { motion } from "framer-motion";
 
 const skillCategories = [
   {
@@ -42,7 +43,13 @@ export default function Skills() {
   return (
     <section id="skills" className="py-20 md:py-28 bg-secondary/30">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             Skills & Technologies
           </h2>
@@ -50,12 +57,16 @@ export default function Skills() {
           <p className="text-muted-foreground text-lg">
             Technologies and tools I work with
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
-            <div
+            <motion.div
               key={category.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="p-6 bg-card rounded-xl border border-border hover:shadow-lg transition-all duration-300"
             >
               <div className="flex items-center gap-3 mb-6">
@@ -77,15 +88,18 @@ export default function Skills() {
                       </span>
                     </div>
                     <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-accent rounded-full transition-all duration-1000"
-                        style={{ width: `${skill.level}%` }}
+                      <motion.div
+                        className="h-full bg-gradient-accent rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                       />
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

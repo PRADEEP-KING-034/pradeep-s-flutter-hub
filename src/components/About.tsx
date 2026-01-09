@@ -1,4 +1,5 @@
 import { GraduationCap, Target, Lightbulb, Rocket } from "lucide-react";
+import { motion } from "framer-motion";
 
 const highlights = [
   {
@@ -27,7 +28,13 @@ export default function About() {
   return (
     <section id="about" className="py-20 md:py-28 bg-secondary/30">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             About Me
           </h2>
@@ -38,14 +45,19 @@ export default function About() {
             AI training, giving me a unique perspective on building intelligent, 
             user-centric applications.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {highlights.map((item, index) => (
-            <div
+            <motion.div
               key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+            <div
               className="group p-6 bg-card rounded-xl border border-border hover:border-accent/50 hover:shadow-lg transition-all duration-300"
-              style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
                 <item.icon className="w-6 h-6 text-accent" />
@@ -53,10 +65,17 @@ export default function About() {
               <h3 className="font-semibold text-primary mb-2">{item.title}</h3>
               <p className="text-sm text-muted-foreground">{item.description}</p>
             </div>
+          </motion.div>
           ))}
         </div>
 
-        <div className="mt-16 max-w-3xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-16 max-w-3xl mx-auto"
+        >
           <div className="p-8 bg-card rounded-2xl border border-border">
             <h3 className="text-xl font-semibold text-primary mb-4">
               Career Goal
@@ -69,7 +88,7 @@ export default function About() {
               with my experience in AI data annotation.
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { Briefcase, Calendar } from "lucide-react";
+import { motion } from "framer-motion";
 
 const experiences = [
   {
@@ -44,7 +45,13 @@ export default function Experience() {
   return (
     <section id="experience" className="py-20 md:py-28">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             Experience
           </h2>
@@ -52,7 +59,7 @@ export default function Experience() {
           <p className="text-muted-foreground text-lg">
             My professional journey in software development and AI
           </p>
-        </div>
+        </motion.div>
 
         <div className="max-w-3xl mx-auto">
           <div className="relative">
@@ -61,7 +68,14 @@ export default function Experience() {
 
             <div className="space-y-8">
               {experiences.map((exp, index) => (
-                <div key={index} className="relative flex gap-6">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative flex gap-6"
+                >
                   {/* Timeline dot */}
                   <div className="hidden sm:flex flex-shrink-0 w-16 h-16 rounded-full bg-card border-2 border-border items-center justify-center z-10">
                     <Briefcase
@@ -108,7 +122,7 @@ export default function Experience() {
                       ))}
                     </ul>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

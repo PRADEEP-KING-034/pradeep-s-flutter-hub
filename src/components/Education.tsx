@@ -1,17 +1,30 @@
 import { GraduationCap, Award } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Education() {
   return (
     <section id="education" className="py-20 md:py-28">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             Education
           </h2>
           <div className="w-20 h-1 bg-gradient-accent rounded-full mx-auto" />
-        </div>
+        </motion.div>
 
-        <div className="max-w-2xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl mx-auto"
+        >
           <div className="p-8 bg-card rounded-2xl border border-border hover:shadow-lg transition-all duration-300">
             <div className="flex items-start gap-6">
               <div className="w-16 h-16 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
@@ -38,7 +51,7 @@ export default function Education() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

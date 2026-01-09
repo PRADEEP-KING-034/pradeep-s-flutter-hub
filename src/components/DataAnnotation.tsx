@@ -1,4 +1,5 @@
 import { Database, Eye, Tag, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 const capabilities = [
   "Image & video dataset annotation",
@@ -18,7 +19,13 @@ export default function DataAnnotation() {
   return (
     <section className="py-20 md:py-28 bg-primary text-primary-foreground">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium mb-6">
             <Database size={16} />
             <span>Specialized Expertise</span>
@@ -29,11 +36,17 @@ export default function DataAnnotation() {
           <p className="text-primary-foreground/70 text-lg">
             Expertise in preparing high-quality datasets for machine learning models
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Capabilities */}
-          <div className="p-8 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="p-8 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10"
+          >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
                 <Eye className="w-5 h-5 text-accent" />
@@ -48,10 +61,16 @@ export default function DataAnnotation() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Tools & Value */}
-          <div className="space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="space-y-6"
+          >
             <div className="p-8 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
@@ -83,7 +102,7 @@ export default function DataAnnotation() {
                 high-quality training data for model development.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

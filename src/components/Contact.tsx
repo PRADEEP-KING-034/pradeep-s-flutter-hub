@@ -3,6 +3,7 @@ import { Mail, Phone, Linkedin, Github, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { motion } from "framer-motion";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -86,7 +87,13 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 md:py-28 bg-secondary/30">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             Get In Touch
           </h2>
@@ -94,11 +101,16 @@ export default function Contact() {
           <p className="text-muted-foreground text-lg">
             Have a project in mind or want to discuss opportunities? Let's connect!
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
             <h3 className="text-xl font-semibold text-primary mb-6">
               Contact Information
             </h3>
@@ -145,10 +157,15 @@ export default function Contact() {
                 </li>
               </ul>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
             <h3 className="text-xl font-semibold text-primary mb-6">
               Send a Message
             </h3>
@@ -230,7 +247,7 @@ export default function Contact() {
                 )}
               </Button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

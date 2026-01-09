@@ -1,6 +1,6 @@
 import { ExternalLink, Github, Smartphone, Globe, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { motion } from "framer-motion";
 interface Project {
   title: string;
   description: string;
@@ -40,6 +40,7 @@ const projects: Project[] = [
     ],
     icon: Smartphone,
     color: "from-violet-500 to-purple-500",
+    isCurrent: true,
   },
   {
     title: "Messaging App",
@@ -116,7 +117,13 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 md:py-28">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             Featured Projects
           </h2>
@@ -124,13 +131,19 @@ export default function Projects() {
           <p className="text-muted-foreground text-lg">
             A selection of projects I've worked on
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={project.title}
-              className={`group p-6 bg-card rounded-xl border transition-all duration-300 ${
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+            <div
+              className={`group p-6 bg-card rounded-xl border transition-all duration-300 h-full ${
                 project.isCurrent
                   ? "border-accent ring-2 ring-accent/20 shadow-lg"
                   : "border-border hover:border-accent/50 hover:shadow-xl"
@@ -193,6 +206,7 @@ export default function Projects() {
                 ))}
               </div>
             </div>
+          </motion.div>
           ))}
         </div>
       </div>
